@@ -7,6 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy import create_engine, Column, Table, String, Integer, DateTime, Text
 from flask_login import UserMixin
 
+
 Base = automap_base()
 
 class User(Base, UserMixin):

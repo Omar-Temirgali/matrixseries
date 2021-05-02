@@ -145,6 +145,3 @@ def search():
         return redirect(url_for('post', id=returnVal))
     else: 
         return render_template('posts.html')
-    
-    
-    

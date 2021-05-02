@@ -15,7 +15,5 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
-connection = cx_Oracle.connect("OTB", "omar2001", "localhost:1521/xe", encoding="UTF-8")
-
 
 from flaskpost import routes
