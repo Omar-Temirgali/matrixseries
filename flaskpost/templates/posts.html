@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts.items %}
+    <div class="media d-flex mt-4 border rounded p-4">
+        <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="67x98" src="{{ post.poster_link }}" data-holder-rendered="true" style="width: 140px; height: 209px;">
+        <div class="media-body">
+            <h5 class="mt-0 mb-0"><a href="/post/{{ post.series_id }}" class="text-dark font-weight-bold">{{ post.series_title }}</a> {{ post.runtime_of_series }}</h5>
+            <small class="text-secondary">{{ post.runtime_of_episodes }} | {{ post.genre }}</small>
+            <div>
+                <img src="https://img.icons8.com/fluent/20/000000/star.png"/>
+                {{ post.imdb_rating }}
+            </div>
+            <p class="mb-0">{{ post.overview }}</p>
+            <small>{{ post.genre }}</small>
+            <div class="mt-2">
+                {% if current_user.is_authenticated %}
+                    <a href="/post/{{ post.series_id }}" class="btn btn-outline-primary mr-2">Watch</a>
+                    <a href="/post/{{ post.series_id }}" class="btn btn-outline-primary">Comment</a>
+                {% else %}
+                    <a href="/post/{{ post.series_id }}" class="btn btn-outline-primary mr-2">Watch</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% for page_num in posts.iter_pages() %}
+        {% if page_num %}
+            <a class="btn btn-outline-info ml-1 mr-1 mt-4 mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+{% endblock content %}

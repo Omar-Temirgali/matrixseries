@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if current_user.is_authenticated %}
+<form method="POST" action="" id="form">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <div class="form-group">
+            <h5>Add comment</h5>
+            {% if form.content.errors %}
+                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.content.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.content(class="form-control form-control-lg") }}
+            {% endif %}
+        </div>
+    </fieldset>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-outline-info") }}
+    </div>
+</form>
+{% endif %}
+{% endblock content %}
